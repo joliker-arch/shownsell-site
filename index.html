@@ -457,22 +457,26 @@
     text-align: center;
     margin-bottom: 60px;
   }
+  .transforms-header .section-title { font-size: clamp(2.5rem, 4vw, 3.5rem); }
   .transforms-header .section-body { margin: 0 auto; text-align: center; }
   .ba-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 32px;
   }
-  .ba-card { }
+  .ba-card {
+    padding-bottom: 24px;
+  }
   .ba-imgs {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4px;
     margin-bottom: 16px;
     position: relative;
+    min-height: 420px;
   }
   .ba-img {
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/2;
     object-fit: cover;
     display: block;
     width: 100%;
@@ -481,7 +485,7 @@
 
   /* image placeholder */
   .img-placeholder {
-    aspect-ratio: 4/3;
+    aspect-ratio: 3/2;
     background: linear-gradient(140deg, var(--sand-mid) 0%, var(--stone) 100%);
     display: flex;
     flex-direction: column;
@@ -516,7 +520,7 @@
     z-index: 2;
   }
   .ba-label {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--driftwood);
@@ -526,12 +530,13 @@
   .ba-caption {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: var(--bark);
     text-align: center;
+    margin-top: 12px;
   }
   .ba-result {
-    font-size: 0.88rem;
+    font-size: 1rem;
     color: var(--text);
     margin-top: 3px;
     font-weight: 400;
@@ -1127,8 +1132,8 @@
     </div>
     <div class="ba-card reveal">
       <div class="ba-imgs">
-        <img class="ba-img" src="images/lamp_before.jpg" alt="Brass lamp before" />
-        <img class="ba-img" src="images/lamp_after.jpg" alt="Brass lamp after" />
+        <img class="ba-img" src="images/lamp_before.jpg" alt="Brass lamp before" style="object-position: center top;" />
+        <img class="ba-img" src="images/lamp_after.jpg" alt="Brass lamp after" style="object-position: center top;" />
         <div class="ba-divider">&rarr;</div>
       </div>
       <div class="ba-label">Transformation Story</div>
