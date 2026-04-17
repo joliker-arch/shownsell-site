@@ -243,6 +243,7 @@
     background: var(--ocean-lt);
     overflow: hidden;
   }
+  .hero-mobile-banner { display: none; }
   .hero-img-wrap {
     width: 100%; height: 100%;
     display: flex;
@@ -1011,24 +1012,55 @@
 
     section { padding: 60px 24px; }
 
-    nav { padding: 14px 20px; }
+    nav { padding: 14px 20px; overflow: visible; }
     nav.scrolled { padding: 12px 20px; }
     .nav-links { gap: 12px; }
     .nav-links > li:not(:last-child) { display: none; }
+    .nav-links .cta-nav {
+      padding: 8px 14px;
+      font-size: 0.65rem;
+    }
     .nav-toggle { display: block; }
     #mobile-menu { display: block; }
 
     .hero {
-      grid-template-columns: 1fr;
-      padding: 100px 24px 60px;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
     }
     .hero-right { display: none; }
     .hero-left {
-      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      padding: 120px 24px 80px;
     }
     .hero-left::after { display: none; }
     .hero-title { font-size: clamp(2.2rem, 8vw, 3rem); }
     .hero-body { font-size: 1rem; }
+    .hero-actions {
+      flex-direction: column;
+      gap: 16px;
+      align-items: stretch;
+    }
+    .btn-primary {
+      width: 100%;
+      text-align: center;
+    }
+    .hero-badge {
+      position: static;
+      display: inline-block;
+      width: fit-content;
+      margin-top: 32px;
+      left: auto;
+      right: auto;
+      bottom: auto;
+    }
+    .hero-mobile-banner {
+      display: block;
+      width: 100%;
+      height: 240px;
+      background: var(--ocean-lt);
+    }
 
     #about {
       grid-template-columns: 1fr;
@@ -1143,6 +1175,7 @@
       <img src="hero.jpg" alt="Beautiful home interior" />
     </div>
   </div>
+  <div class="hero-mobile-banner" aria-hidden="true"></div>
 </section>
 
 <!-- -- ABOUT -- -->
