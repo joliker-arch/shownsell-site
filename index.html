@@ -111,6 +111,41 @@
   }
   .nav-links .cta-nav:hover { background: var(--bark) !important; }
 
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--bark);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 6px 10px;
+    margin-left: 12px;
+  }
+  #mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--white);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    border-bottom: 1px solid var(--sand-mid);
+  }
+  #mobile-menu.open { max-height: 400px; }
+  #mobile-menu a {
+    display: block;
+    padding: 14px 24px;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    border-top: 1px solid var(--sand-mid);
+  }
+  #mobile-menu a:hover { color: var(--ocean); }
+
   /* -- HERO -- */
   .hero {
     min-height: 100vh;
@@ -965,11 +1000,83 @@
     .area-strip { padding: 32px 40px; gap: 24px; }
   }
   @media (max-width: 640px) {
-    .nav-links { display: none; }
     .hero-title { font-size: 2.4rem; }
     .steps-grid { grid-template-columns: 1fr; }
     .form-row { grid-template-columns: 1fr; }
     .categories { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    html { font-size: 16px; }
+
+    section { padding: 60px 24px; }
+
+    nav { padding: 14px 20px; }
+    nav.scrolled { padding: 12px 20px; }
+    .nav-links { gap: 12px; }
+    .nav-links > li:not(:last-child) { display: none; }
+    .nav-toggle { display: block; }
+    #mobile-menu { display: block; }
+
+    .hero {
+      grid-template-columns: 1fr;
+      padding: 100px 24px 60px;
+    }
+    .hero-right { display: none; }
+    .hero-left {
+      padding: 0;
+    }
+    .hero-left::after { display: none; }
+    .hero-title { font-size: clamp(2.2rem, 8vw, 3rem); }
+    .hero-body { font-size: 1rem; }
+
+    #about {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 60px 24px;
+    }
+
+    #how { padding: 60px 24px; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .how-header { margin-bottom: 40px; }
+
+    #transformations { padding: 60px 24px; }
+    .ba-grid { grid-template-columns: 1fr; gap: 24px; }
+
+    #testimonials { padding: 60px 24px; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonial-pull { font-size: 1rem; }
+    .testimonial-full p { font-size: 1rem; }
+
+    #what { padding: 60px 24px; }
+    .what-inner { grid-template-columns: 1fr; gap: 40px; }
+    .categories { grid-template-columns: 1fr; }
+
+    .area-strip {
+      flex-direction: column;
+      gap: 16px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    .area-strip > div { text-align: center; }
+    .area-dot { display: none; }
+
+    #contact {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      padding: 60px 24px;
+    }
+    .form-row { grid-template-columns: 1fr; }
+
+    footer {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 32px 24px;
+      gap: 20px;
+    }
+    .footer-brand { justify-content: center; }
+    .footer-links { justify-content: center; flex-wrap: wrap; gap: 18px; }
   }
 </style>
 </head>
@@ -1003,6 +1110,13 @@
     <li><a href="#testimonials">Reviews</a></li>
     <li><a href="#contact" class="cta-nav">Free Consult</a></li>
   </ul>
+  <button class="nav-toggle" aria-label="Menu" onclick="toggleMobileMenu()">&#9776;</button>
+  <div id="mobile-menu">
+    <a href="#about">About</a>
+    <a href="#how">How It Works</a>
+    <a href="#transformations">Transformations</a>
+    <a href="#testimonials">Reviews</a>
+  </div>
 </nav>
 
 <!-- -- HERO -- -->
@@ -1514,6 +1628,16 @@
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // -- Mobile menu toggle
+  function toggleMobileMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+  document.querySelectorAll('#mobile-menu a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.remove('open');
+    });
   });
 
   // -- Intersection observer for reveal animations
